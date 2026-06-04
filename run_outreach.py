@@ -41,15 +41,13 @@ if os.path.exists(CONFIG_FILE):
 # --- EMAIL TEMPLATES MAP ---
 TEMPLATES = {
     'ACS': {
-        'subject': "Reconnecting / MyCity Child Care & BA/RTE Contracts",
+        'subject': "Reconnecting / MyCity Child Care contract opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you're doing well!\n\n"
-            "I'm reaching out because my contract as the BA Lead Engineer and SAFe Release Train Engineer for the MyCity platform recently ended due to the city-wide budget cuts.\n\n"
-            "It was a privilege collaborating with ACS on the MyCity Child Care initiative. During my time on the project, I focused on leading our SAFe Agile delivery, driving agentic workflow adoption, and building the reporting dashboards that leadership used to track our progress.\n\n"
-            "I am actively looking for my next contract role. Since you are close to the work at ACS, I wanted to ask if you know of any open contract opportunities for a Senior Business Analyst or Release Train Engineer within ACS, or if there is a project lead you think I should connect with?\n\n"
-            "For reference, I have excellent letters of recommendation from both of my former supervisors at OTI, which I'd be happy to share.\n\n"
-            "Thanks so much for your time and for all your collaboration during the MyCity project.\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead Engineer & SAFe Release Train Engineer for the MyCity platform recently ended due to the city budget cuts.\n\n"
+            "I really enjoyed working with the ACS team on the Child Care site. As I look for my next contract engagement, do you know of any open BA, PM, or RTE opportunities within ACS or other city orgs?\n\n"
+            "I have excellent letters of recommendation from my OTI supervisors that I can share. Any leads or connections would be greatly appreciated.\n\n"
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -57,15 +55,13 @@ TEMPLATES = {
         )
     },
     'SBS': {
-        'subject': "City Contract Opportunities – Business Analyst & RTE Lead",
+        'subject': "City Contract Opportunities – BA/RTE",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you're doing well!\n\n"
-            "I recently finished my contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform due to the budget cuts.\n\n"
-            "I really enjoyed our cross-agency collaboration and the work we did to align stakeholders around the MyCity Business portal. Over the past two years, I led SAFe Agile coordination across our teams, defined business requirements, and created dashboard insights for leadership.\n\n"
-            "I'm currently exploring my next contract role and wanted to see if SBS has any open contracts or upcoming initiatives that need a Senior BA, Project Manager, or RTE. I would appreciate any advice or connections you might be able to share.\n\n"
-            "I have strong letters of recommendation from my OTI supervisors, which I'm glad to forward.\n\n"
-            "Thanks for your time, and I hope we can stay in touch!\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead Engineer & SAFe Release Train Engineer on the MyCity platform recently ended due to the city budget cuts.\n\n"
+            "As I explore my next contract opportunity, I wanted to ask if SBS has any open contracts or upcoming initiatives that need a Senior BA, PM, or RTE? I would appreciate any advice or connections you might be able to share.\n\n"
+            "I have strong letters of recommendation from my OTI supervisors. Thanks for your time!\n\n"
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -73,15 +69,13 @@ TEMPLATES = {
         )
     },
     'City Hall': {
-        'subject': "Reconnecting – MyCity Platform Delivery & Dashboards",
+        'subject': "MyCity Platform – Next Contract Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you are having a productive week!\n\n"
-            "I wanted to reach out and let you know that my contract as the BA Lead Engineer and SAFe Release Train Engineer for the MyCity platform recently wrapped up due to budget cuts.\n\n"
-            "I valued our collaboration during my time on the project. I spent nearly two years driving Agile delivery across the product teams, coordinating stakeholders, and building the dashboard reporting that kept leadership and executive stakeholders updated on our releases.\n\n"
-            "I am currently looking for my next contract engagement. Given your vantage point at City Hall, I wanted to see if you are aware of any open project management, business analysis, or digital transformation contracts across the city agencies?\n\n"
-            "I have strong recommendation letters from both of my OTI managers that I can share. Any leads or introductions would be incredibly helpful.\n\n"
-            "Thank you for your time, and thank you for your support of the MyCity platform.\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead/SAFe Release Train Engineer for the MyCity platform recently wrapped up due to budget cuts.\n\n"
+            "I enjoyed supporting the platform's delivery and creating leadership dashboards. I'm now looking for my next contract role. Given your vantage point at City Hall, do you know of any project management, business analysis, or agile delivery contracts open across the city?\n\n"
+            "I have strong recommendation letters from my OTI managers that I can share. Thanks so much for your time.\n\n"
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -89,15 +83,13 @@ TEMPLATES = {
         )
     },
     'Generic_City': {
-        'subject': "Reconnecting from MyCity / Senior BA & RTE Opportunities",
+        'subject': "Reconnecting from MyCity / Contract Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you're doing well!\n\n"
-            "I wanted to reach out because my contract as the BA Lead Engineer and Release Train Engineer for the MyCity platform was recently cut short due to city budget constraints.\n\n"
-            "I really valued the opportunity to coordinate with your agency during our integrations on the platform. Over my two years on MyCity, I led the SAFe release coordination, gathered requirements as the BA Lead, and designed the data dashboards for project metrics.\n\n"
-            "I'm now looking for my next contract engagement. Do you happen to know if {org_name} has any active or upcoming contracts for a Senior Business Analyst, Agile Project Manager, or Release Train Engineer? I would be very grateful for any leads or introductions.\n\n"
-            "I have excellent references from both of my supervisors at OTI, which I'm happy to provide.\n\n"
-            "Thank you for your support, and I hope to hear from you soon!\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead/SAFe Release Train Engineer for the MyCity platform was recently cut short due to city budget constraints.\n\n"
+            "I really valued working on the platform's agency integrations. I'm now looking for my next contract role. Do you happen to know if {org_name} has any active or upcoming contracts for a Senior BA, Agile PM, or RTE?\n\n"
+            "I have excellent references from my supervisors at OTI. Thanks for your time and support!\n\n"
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -105,15 +97,13 @@ TEMPLATES = {
         )
     },
     'MTX': {
-        'subject': "Project Reconnect – MyCity Collaboration & MTX Roles",
+        'subject': "OTI Project Reconnect – MTX Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope things are going well at MTX!\n\n"
-            "I wanted to reach out directly—as you might know, my contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to the budget cuts. It was an excellent run, and I thoroughly enjoyed collaborating with the MTX team on the implementation.\n\n"
-            "During my time on MyCity, I worked closely with our vendor partners to lead Release Train Engineering, manage stakeholders, and design dashboard tracking for leadership.\n\n"
-            "I’m looking for my next contract or permanent role. I know MTX is heavily involved in public sector and digital transformation contracts. Do you know if MTX currently has any openings for Senior Business Analysts, PMs, or Scrum Masters that I could be referred to?\n\n"
-            "I have letters of recommendation from my OTI supervisors and would love to share my resume if there is an active opening.\n\n"
-            "Thank you for a great partnership on MyCity, and I hope our paths cross again soon!\n\n"
+            "I hope things are going well.\n\n"
+            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to reach out.\n\n"
+            "I am looking for my next role and know MTX is heavily involved in public sector contracts. Do you know if MTX has any current openings for Senior BAs, PMs, or Scrum Masters that I could be referred to?\n\n"
+            "I have strong letters of recommendation from my OTI supervisors that I can share. Thanks for your time and help!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -121,15 +111,13 @@ TEMPLATES = {
         )
     },
     'EY': {
-        'subject': "Reconnecting / MyCity Platform Delivery & Opportunities",
+        'subject': "OTI Project Reconnect / EY Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you're doing well!\n\n"
-            "I wanted to send a quick note to reconnect. My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently concluded due to the project's budget cuts. I really valued working alongside the EY/Nuvalence team to build the platform.\n\n"
-            "Over the past two years, I focused on leading agile delivery, training cross-functional teams on agentic tools, and ensuring smooth stakeholder coordination.\n\n"
-            "I am actively searching for my next opportunity and wanted to see if EY has any open project management, business analyst, or agile delivery roles in your practice. If so, I would be very grateful for a referral or an introduction to the hiring team.\n\n"
-            "I have excellent written recommendations from both of my supervisors at OTI that I'd be happy to share.\n\n"
-            "Thank you again for your collaboration, and I'd love to stay connected!\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently concluded due to budget cuts. Since we both worked on the OTI project, I wanted to connect.\n\n"
+            "I am actively searching for my next opportunity. Do you know if EY has any open project/program management, business analyst, or agile delivery roles in your practice? If so, I would be very grateful for a referral or introduction.\n\n"
+            "I have letters of recommendation from my former managers at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -137,14 +125,13 @@ TEMPLATES = {
         )
     },
     'Deloitte': {
-        'subject': "Staying Connected – MyCity & Deloitte Opportunities",
+        'subject': "OTI Project Reconnect – Deloitte Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope all is well!\n\n"
-            "I wanted to reach out as my contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently ended due to budget constraints. I really appreciated our collaboration during the Deloitte phase of the platform's delivery.\n\n"
-            "During my time on the project, I led agile processes, managed business analysis requirements, and built leadership dashboards. I'm now exploring my next role and wanted to see if Deloitte has any open contracts or permanent roles for Senior BAs, PMs, or Agile coaches.\n\n"
-            "If there are any relevant openings, I would be very grateful if you could refer me or connect me with the right team lead. I have strong letters of recommendation from my former managers at OTI.\n\n"
-            "Thanks for the great partnership, and let's keep in touch!\n\n"
+            "I hope all is well.\n\n"
+            "My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to reach out.\n\n"
+            "I am exploring my next role and wanted to see if Deloitte has any open contracts or permanent roles for Senior BAs, PMs, or Agile coaches. If so, I would appreciate a referral or connection. I have strong letters of recommendation from my former supervisors at OTI.\n\n"
+            "Thanks so much for your time.\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -152,14 +139,13 @@ TEMPLATES = {
         )
     },
     'Maureen Data Systems': {
-        'subject': "Project Reconnect – MyCity Common Services & MDS Roles",
+        'subject': "OTI Project Reconnect – MDS Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you're doing well!\n\n"
-            "I wanted to reach out and let you know that my contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. It was a pleasure collaborating with the MDS team on the Common Services support side.\n\n"
-            "I am looking for my next role and wanted to see if MDS has any project management, business analysis, or service delivery positions open. If you know of any active roles, I'd appreciate a referral or if you could point me to the recruiter.\n\n"
-            "I have strong letters of recommendation from my OTI supervisors, which I'm happy to send over along with my resume.\n\n"
-            "Thank you for your support, and I hope we can work together again in the future!\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to connect.\n\n"
+            "I am seeking my next opportunity. Do you know if MDS has any project management, business analysis, or service delivery positions open where a referral from you might help?\n\n"
+            "I have letters of recommendation from my former managers at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
@@ -167,15 +153,13 @@ TEMPLATES = {
         )
     },
     'Generic_Vendor': {
-        'subject': "Reconnecting from MyCity / Job Opportunities",
+        'subject': "OTI Project Reconnect / Job Opportunities",
         'body': (
             "Hi {first_name},\n\n"
-            "I hope you're doing well!\n\n"
-            "I wanted to reach out because my contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently concluded due to project budget cuts. I really enjoyed working alongside {org_name} on this project.\n\n"
-            "I'm now seeking my next opportunity. Over the last two years, I focused on leading agile delivery, dashboard analytics for leadership, and cross-functional team alignment.\n\n"
-            "Does {org_name} have any open contracts or full-time roles in project/program management, agile coaching, or business analysis that might be a good fit? I would be very grateful for a referral or any advice.\n\n"
-            "I have strong written recommendations from my former supervisors at OTI.\n\n"
-            "Thank you, and I hope we can stay in touch!\n\n"
+            "I hope you're doing well.\n\n"
+            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to connect.\n\n"
+            "I am looking for my next role. Does {org_name} have any open contracts or full-time roles in project management, agile delivery, or business analysis that might be a fit? I'd be very grateful for a referral or any advice.\n\n"
+            "I have letters of recommendation from my former supervisors at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
