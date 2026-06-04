@@ -11,11 +11,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-# Scopes required: Google Sheets write/read and Gmail Compose (creates drafts but cannot send)
+# Scopes required: Google Sheets write/read and Gmail Modify (creates drafts and reads/trashes bounces)
 SCOPES = [
     'https://www.googleapis.com/auth/spreadsheets',
-    'https://www.googleapis.com/auth/gmail.compose'
+    'https://www.googleapis.com/auth/gmail.modify'
 ]
+
 
 # File paths
 CITY_CSV = 'city_employees_outreach.csv'
@@ -301,6 +302,18 @@ def upload_to_google_sheets(creds):
         spreadsheet_id = spreadsheet.get('spreadsheetId')
         spreadsheet_url = spreadsheet.get('spreadsheetUrl')
         print(f"\n[+] Created Google Sheet: {spreadsheet_url}")
+        
+        # Save spreadsheet_id to config.json
+        if os.path.exists(CONFIG_FILE):
+            try:
+                with open(CONFIG_FILE, 'r', encoding='utf-8') as cf:
+                    config_data = json.load(cf)
+                config_data['spreadsheet_id'] = spreadsheet_id
+                with open(CONFIG_FILE, 'w', encoding='utf-8') as cf:
+                    json.dump(config_data, cf, indent=2)
+                print(f"[+] Saved spreadsheet_id to {CONFIG_FILE}")
+            except Exception as e:
+                print(f"Warning: Could not save spreadsheet_id to config.json: {e}")
         
         # 2. Add worksheets for City and Vendor lists
         # By default, a spreadsheet has one sheet ("Sheet1"). Let's rename it to "City Employees Outreach".
