@@ -26,6 +26,7 @@ CONFIG_FILE = 'config.json'
 SENDER_NAME = "[Your Name]"
 SENDER_EMAIL = "[Your Email]"
 SENDER_LINKEDIN = "[Your LinkedIn]"
+SENDER_WEBSITE = "[Your Website]"
 
 # Load config if exists
 if os.path.exists(CONFIG_FILE):
@@ -35,6 +36,7 @@ if os.path.exists(CONFIG_FILE):
             SENDER_NAME = config_data.get('sender_name', SENDER_NAME)
             SENDER_EMAIL = config_data.get('sender_email', SENDER_EMAIL)
             SENDER_LINKEDIN = config_data.get('sender_linkedin', SENDER_LINKEDIN)
+            SENDER_WEBSITE = config_data.get('sender_website', SENDER_WEBSITE)
     except Exception as e:
         print(f"Warning: Could not parse config.json: {e}")
 
@@ -51,6 +53,7 @@ TEMPLATES = {
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -65,6 +68,7 @@ TEMPLATES = {
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -79,6 +83,7 @@ TEMPLATES = {
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -93,6 +98,7 @@ TEMPLATES = {
             "Best regards,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -101,12 +107,13 @@ TEMPLATES = {
         'body': (
             "Hi {first_name},\n\n"
             "I hope things are going well.\n\n"
-            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to reach out.\n\n"
+            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.\n\n"
             "I am looking for my next role and know MTX is heavily involved in public sector contracts. Do you know if MTX has any current openings for Senior BAs, PMs, or Scrum Masters that I could be referred to?\n\n"
             "I have strong letters of recommendation from my OTI supervisors that I can share. Thanks for your time and help!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -115,12 +122,13 @@ TEMPLATES = {
         'body': (
             "Hi {first_name},\n\n"
             "I hope you're doing well.\n\n"
-            "My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently concluded due to budget cuts. Since we both worked on the OTI project, I wanted to connect.\n\n"
+            "My contract as the BA Lead Engineer & SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.\n\n"
             "I am actively searching for my next opportunity. Do you know if EY has any open project/program management, business analyst, or agile delivery roles in your practice? If so, I would be very grateful for a referral or introduction.\n\n"
             "I have letters of recommendation from my former managers at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -129,12 +137,13 @@ TEMPLATES = {
         'body': (
             "Hi {first_name},\n\n"
             "I hope all is well.\n\n"
-            "My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to reach out.\n\n"
+            "My contract as the BA Lead Engineer & SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.\n\n"
             "I am exploring my next role and wanted to see if Deloitte has any open contracts or permanent roles for Senior BAs, PMs, or Agile coaches. If so, I would appreciate a referral or connection. I have strong letters of recommendation from my former supervisors at OTI.\n\n"
             "Thanks so much for your time.\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -143,12 +152,13 @@ TEMPLATES = {
         'body': (
             "Hi {first_name},\n\n"
             "I hope you're doing well.\n\n"
-            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to connect.\n\n"
+            "My contract as the BA Lead Engineer & Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.\n\n"
             "I am seeking my next opportunity. Do you know if MDS has any project management, business analysis, or service delivery positions open where a referral from you might help?\n\n"
             "I have letters of recommendation from my former managers at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     },
@@ -157,12 +167,13 @@ TEMPLATES = {
         'body': (
             "Hi {first_name},\n\n"
             "I hope you're doing well.\n\n"
-            "My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to connect.\n\n"
+            "My contract as the BA Lead Engineer & Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.\n\n"
             "I am looking for my next role. Does {org_name} have any open contracts or full-time roles in project management, agile delivery, or business analysis that might be a fit? I'd be very grateful for a referral or any advice.\n\n"
             "I have letters of recommendation from my former supervisors at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_name}\n"
             "{sender_linkedin}\n"
+            "{sender_website}\n"
             "{sender_email}"
         )
     }
@@ -226,6 +237,7 @@ def get_template_and_details(contact, is_city=True):
                 first_name=first_name,
                 sender_name=SENDER_NAME,
                 sender_linkedin=SENDER_LINKEDIN,
+                sender_website=SENDER_WEBSITE,
                 sender_email=SENDER_EMAIL
             )
         else:
@@ -235,6 +247,7 @@ def get_template_and_details(contact, is_city=True):
                 org_name=org,
                 sender_name=SENDER_NAME,
                 sender_linkedin=SENDER_LINKEDIN,
+                sender_website=SENDER_WEBSITE,
                 sender_email=SENDER_EMAIL
             )
     else:
@@ -245,6 +258,7 @@ def get_template_and_details(contact, is_city=True):
                 first_name=first_name,
                 sender_name=SENDER_NAME,
                 sender_linkedin=SENDER_LINKEDIN,
+                sender_website=SENDER_WEBSITE,
                 sender_email=SENDER_EMAIL
             )
         else:
@@ -254,6 +268,7 @@ def get_template_and_details(contact, is_city=True):
                 org_name=org,
                 sender_name=SENDER_NAME,
                 sender_linkedin=SENDER_LINKEDIN,
+                sender_website=SENDER_WEBSITE,
                 sender_email=SENDER_EMAIL
             )
             
@@ -342,7 +357,7 @@ def run_outreach(test_mode=True):
     print("        MyCity Outreach Automation Tool             ")
     print("====================================================")
     
-    print(f"Using Sender Details:\n  Name: {SENDER_NAME}\n  Email: {SENDER_EMAIL}\n  LinkedIn: {SENDER_LINKEDIN}")
+    print(f"Using Sender Details:\n  Name: {SENDER_NAME}\n  Email: {SENDER_EMAIL}\n  LinkedIn: {SENDER_LINKEDIN}\n  Website: {SENDER_WEBSITE}")
     
     creds = get_gmail_creds()
     if not creds:

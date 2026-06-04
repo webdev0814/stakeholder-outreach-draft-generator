@@ -25,6 +25,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -47,6 +48,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -69,6 +71,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -91,6 +94,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -107,7 +111,7 @@ This document contains personalized email templates for the job search outreach.
 
   I hope things are going well.
 
-  My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to reach out.
+  My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.
 
   I am looking for my next role and know MTX is heavily involved in public sector contracts. Do you know if MTX has any current openings for Senior BAs, PMs, or Scrum Masters that I could be referred to? 
 
@@ -117,6 +121,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -129,7 +134,7 @@ This document contains personalized email templates for the job search outreach.
 
   I hope you're doing well.
 
-  My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently concluded due to budget cuts. Since we both worked on the OTI project, I wanted to connect.
+  My contract as the BA Lead Engineer & SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.
 
   I am actively searching for my next opportunity. Do you know if EY has any open project/program management, business analyst, or agile delivery roles in your practice? If so, I would be very grateful for a referral or introduction.
 
@@ -139,6 +144,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -151,7 +157,7 @@ This document contains personalized email templates for the job search outreach.
 
   I hope all is well.
 
-  My contract as the BA Lead Engineer and SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to reach out.
+  My contract as the BA Lead Engineer & SAFe Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.
 
   I am exploring my next role and wanted to see if Deloitte has any open contracts or permanent roles for Senior BAs, PMs, or Agile coaches. If so, I would appreciate a referral or connection. I have strong letters of recommendation from my former supervisors at OTI.
 
@@ -161,6 +167,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -173,7 +180,7 @@ This document contains personalized email templates for the job search outreach.
 
   I hope you're doing well.
 
-  My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to connect.
+  My contract as the BA Lead Engineer & Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.
 
   I am seeking my next opportunity. Do you know if MDS has any project management, business analysis, or service delivery positions open where a referral from you might help? 
 
@@ -183,6 +190,7 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
 
@@ -195,7 +203,7 @@ This document contains personalized email templates for the job search outreach.
 
   I hope you're doing well.
 
-  My contract as the BA Lead Engineer and Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project, I wanted to connect.
+  My contract as the BA Lead Engineer & Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.
 
   I am looking for my next role. Does [Employer] have any open contracts or full-time roles in project management, agile delivery, or business analysis that might be a fit? I'd be very grateful for a referral or any advice.
 
@@ -205,5 +213,6 @@ This document contains personalized email templates for the job search outreach.
 
   [Your Name]
   [Your LinkedIn URL]
+  [Your Website]
   [Your Email]
   ```
