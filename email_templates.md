@@ -23,10 +23,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best regards,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 2. SBS (Small Business Services)
@@ -46,10 +43,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best regards,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 3. City Hall
@@ -69,10 +63,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best regards,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 4. Generic City Agency (DCWP, DOB, DEP, DOT, FDNY, LPC, DOF, DOHMH, OATH)
@@ -92,10 +83,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best regards,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ---
@@ -119,10 +107,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 2. EY (Ernst & Young) / Nuvalence
@@ -142,10 +127,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 3. Deloitte
@@ -165,10 +147,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 4. Maureen Data Systems (MDS)
@@ -188,10 +167,7 @@ This document contains personalized email templates for the job search outreach.
 
   Best,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```
 
 ### 5. Generic Vendor Template (TransPerfect, Blenderbox, FICO, Gartner, Salesforce, etc.)
@@ -211,8 +187,5 @@ This document contains personalized email templates for the job search outreach.
 
   Best,
 
-  [Your Name]
-  [Your LinkedIn URL]
-  [Your Website]
-  [Your Email]
+  [Your Custom Signature]
   ```

@@ -23,20 +23,20 @@ TOKEN_FILE = 'token.json'
 CONFIG_FILE = 'config.json'
 
 # Default placeholders (loaded from config.json if available)
-SENDER_NAME = "[Your Name]"
-SENDER_EMAIL = "[Your Email]"
-SENDER_LINKEDIN = "[Your LinkedIn]"
-SENDER_WEBSITE = "[Your Website]"
+SENDER_SIGNATURE = (
+    "[Your Name] - Public Sector Specialist\n"
+    "PMP | CSM | CBAP | SAFe\n\n"
+    "Project Leadership \u2022 Data-Driven Strategy \u2022 Process Improvement\n\n"
+    "Linkedin: [Your LinkedIn]\n"
+    "Website:  [Your Website]"
+)
 
 # Load config if exists
 if os.path.exists(CONFIG_FILE):
     try:
         with open(CONFIG_FILE, 'r', encoding='utf-8') as cf:
             config_data = json.load(cf)
-            SENDER_NAME = config_data.get('sender_name', SENDER_NAME)
-            SENDER_EMAIL = config_data.get('sender_email', SENDER_EMAIL)
-            SENDER_LINKEDIN = config_data.get('sender_linkedin', SENDER_LINKEDIN)
-            SENDER_WEBSITE = config_data.get('sender_website', SENDER_WEBSITE)
+            SENDER_SIGNATURE = config_data.get('sender_signature', SENDER_SIGNATURE)
     except Exception as e:
         print(f"Warning: Could not parse config.json: {e}")
 
@@ -51,10 +51,7 @@ TEMPLATES = {
             "I really enjoyed working with the ACS team on the Child Care site. As I look for my next contract engagement, do you know of any open BA, PM, or RTE opportunities within ACS or other city orgs?\n\n"
             "I have excellent letters of recommendation from my OTI supervisors that I can share. Any leads or connections would be greatly appreciated.\n\n"
             "Best regards,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'SBS': {
@@ -66,10 +63,7 @@ TEMPLATES = {
             "As I explore my next contract opportunity, I wanted to ask if SBS has any open contracts or upcoming initiatives that need a Senior BA, PM, or RTE? I would appreciate any advice or connections you might be able to share.\n\n"
             "I have strong letters of recommendation from my OTI supervisors. Thanks for your time!\n\n"
             "Best regards,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'City Hall': {
@@ -81,10 +75,7 @@ TEMPLATES = {
             "I enjoyed supporting the platform's delivery and creating leadership dashboards. I'm now looking for my next contract role. Given your vantage point at City Hall, do you know of any project management, business analysis, or agile delivery contracts open across the city?\n\n"
             "I have strong recommendation letters from my OTI managers that I can share. Thanks so much for your time.\n\n"
             "Best regards,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'Generic_City': {
@@ -96,10 +87,7 @@ TEMPLATES = {
             "I really valued working on the platform's agency integrations. I'm now looking for my next contract role. Do you happen to know if {org_name} has any active or upcoming contracts for a Senior BA, Agile PM, or RTE?\n\n"
             "I have excellent references from my supervisors at OTI. Thanks for your time and support!\n\n"
             "Best regards,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'MTX': {
@@ -111,10 +99,7 @@ TEMPLATES = {
             "I am looking for my next role and know MTX is heavily involved in public sector contracts. Do you know if MTX has any current openings for Senior BAs, PMs, or Scrum Masters that I could be referred to?\n\n"
             "I have strong letters of recommendation from my OTI supervisors that I can share. Thanks for your time and help!\n\n"
             "Best,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'EY': {
@@ -126,10 +111,7 @@ TEMPLATES = {
             "I am actively searching for my next opportunity. Do you know if EY has any open project/program management, business analyst, or agile delivery roles in your practice? If so, I would be very grateful for a referral or introduction.\n\n"
             "I have letters of recommendation from my former managers at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'Deloitte': {
@@ -141,10 +123,7 @@ TEMPLATES = {
             "I am exploring my next role and wanted to see if Deloitte has any open contracts or permanent roles for Senior BAs, PMs, or Agile coaches. If so, I would appreciate a referral or connection. I have strong letters of recommendation from my former supervisors at OTI.\n\n"
             "Thanks so much for your time.\n\n"
             "Best,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'Maureen Data Systems': {
@@ -156,10 +135,7 @@ TEMPLATES = {
             "I am seeking my next opportunity. Do you know if MDS has any project management, business analysis, or service delivery positions open where a referral from you might help?\n\n"
             "I have letters of recommendation from my former managers at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     },
     'Generic_Vendor': {
@@ -171,10 +147,7 @@ TEMPLATES = {
             "I am looking for my next role. Does {org_name} have any open contracts or full-time roles in project management, agile delivery, or business analysis that might be a fit? I'd be very grateful for a referral or any advice.\n\n"
             "I have letters of recommendation from my former supervisors at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
-            "{sender_name}\n"
-            "{sender_linkedin}\n"
-            "{sender_website}\n"
-            "{sender_email}"
+            "{sender_signature}"
         )
     }
 }
@@ -235,20 +208,14 @@ def get_template_and_details(contact, is_city=True):
             subject = TEMPLATES[org]['subject']
             body = TEMPLATES[org]['body'].format(
                 first_name=first_name,
-                sender_name=SENDER_NAME,
-                sender_linkedin=SENDER_LINKEDIN,
-                sender_website=SENDER_WEBSITE,
-                sender_email=SENDER_EMAIL
+                sender_signature=SENDER_SIGNATURE
             )
         else:
             subject = TEMPLATES['Generic_City']['subject']
             body = TEMPLATES['Generic_City']['body'].format(
                 first_name=first_name,
                 org_name=org,
-                sender_name=SENDER_NAME,
-                sender_linkedin=SENDER_LINKEDIN,
-                sender_website=SENDER_WEBSITE,
-                sender_email=SENDER_EMAIL
+                sender_signature=SENDER_SIGNATURE
             )
     else:
         # Check if the specific vendor organization template exists
@@ -256,20 +223,14 @@ def get_template_and_details(contact, is_city=True):
             subject = TEMPLATES[org]['subject']
             body = TEMPLATES[org]['body'].format(
                 first_name=first_name,
-                sender_name=SENDER_NAME,
-                sender_linkedin=SENDER_LINKEDIN,
-                sender_website=SENDER_WEBSITE,
-                sender_email=SENDER_EMAIL
+                sender_signature=SENDER_SIGNATURE
             )
         else:
             subject = TEMPLATES['Generic_Vendor']['subject']
             body = TEMPLATES['Generic_Vendor']['body'].format(
                 first_name=first_name,
                 org_name=org,
-                sender_name=SENDER_NAME,
-                sender_linkedin=SENDER_LINKEDIN,
-                sender_website=SENDER_WEBSITE,
-                sender_email=SENDER_EMAIL
+                sender_signature=SENDER_SIGNATURE
             )
             
     return subject, body
@@ -357,7 +318,7 @@ def run_outreach(test_mode=True):
     print("        MyCity Outreach Automation Tool             ")
     print("====================================================")
     
-    print(f"Using Sender Details:\n  Name: {SENDER_NAME}\n  Email: {SENDER_EMAIL}\n  LinkedIn: {SENDER_LINKEDIN}\n  Website: {SENDER_WEBSITE}")
+    print(f"Using Signature:\n{SENDER_SIGNATURE}\n")
     
     creds = get_gmail_creds()
     if not creds:
