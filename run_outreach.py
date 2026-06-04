@@ -3,6 +3,7 @@ import csv
 import json
 import base64
 import html
+import time
 from email.message import EmailMessage
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -421,6 +422,7 @@ def run_outreach(test_mode=True):
         print(f"  Drafting email for {full_name} ({org}) -> {to_email}...")
         if create_draft(gmail_service, to_email, subject, body):
             drafts_created += 1
+            time.sleep(0.5)
             
     print("\nCreating Vendor outreach drafts:")
     for contact in target_vendor:
@@ -432,6 +434,7 @@ def run_outreach(test_mode=True):
         print(f"  Drafting email for {full_name} ({org}) -> {to_email}...")
         if create_draft(gmail_service, to_email, subject, body):
             drafts_created += 1
+            time.sleep(0.5)
             
     print(f"\n[+] Done! Created {drafts_created} drafts in your Drafts folder.")
     print("Please review and send them manually from your Gmail account.")
