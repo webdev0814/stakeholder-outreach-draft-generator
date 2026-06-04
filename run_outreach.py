@@ -402,10 +402,13 @@ def run_outreach(test_mode=True):
         target_vendor = vendor_contacts[:2]
     else:
         print("\n[!] WARNING: Running in FULL MODE. This will create drafts for all contacts.")
-        confirm = input("Are you sure you want to proceed? (yes/no): ").strip().lower()
-        if confirm != 'yes':
-            print("Aborted.")
-            return
+        import sys
+        skip_confirm = '--yes' in sys.argv or '-y' in sys.argv
+        if not skip_confirm:
+            confirm = input("Are you sure you want to proceed? (yes/no): ").strip().lower()
+            if confirm != 'yes':
+                print("Aborted.")
+                return
         target_city = city_contacts
         target_vendor = vendor_contacts
         
