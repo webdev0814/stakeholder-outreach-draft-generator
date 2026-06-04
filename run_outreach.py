@@ -2,6 +2,7 @@ import os
 import csv
 import json
 import base64
+import html
 from email.message import EmailMessage
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -23,12 +24,16 @@ TOKEN_FILE = 'token.json'
 CONFIG_FILE = 'config.json'
 
 # Default placeholders (loaded from config.json if available)
+SENDER_NAME = "[Your Name]"
+SENDER_EMAIL = "[Your Email]"
+SENDER_LINKEDIN = "linkedin.com/in/jasonsantpmp"
+SENDER_WEBSITE = "https://jasonsant.dev"
 SENDER_SIGNATURE = (
     "[Your Name] - Public Sector Specialist\n"
     "PMP | CSM | CBAP | SAFe\n\n"
     "Project Leadership \u2022 Data-Driven Strategy \u2022 Process Improvement\n\n"
-    "Linkedin: [Your LinkedIn]\n"
-    "Website:  [Your Website]"
+    "Linkedin: linkedin.com/in/jasonsantpmp\n"
+    "Website:  https://jasonsant.dev"
 )
 
 # Load config if exists
@@ -36,6 +41,10 @@ if os.path.exists(CONFIG_FILE):
     try:
         with open(CONFIG_FILE, 'r', encoding='utf-8') as cf:
             config_data = json.load(cf)
+            SENDER_NAME = config_data.get('sender_name', SENDER_NAME)
+            SENDER_EMAIL = config_data.get('sender_email', SENDER_EMAIL)
+            SENDER_LINKEDIN = config_data.get('sender_linkedin', SENDER_LINKEDIN)
+            SENDER_WEBSITE = config_data.get('sender_website', SENDER_WEBSITE)
             SENDER_SIGNATURE = config_data.get('sender_signature', SENDER_SIGNATURE)
     except Exception as e:
         print(f"Warning: Could not parse config.json: {e}")
@@ -144,7 +153,7 @@ TEMPLATES = {
             "Hi {first_name},\n\n"
             "I hope you're doing well.\n\n"
             "My contract as the BA Lead Engineer & Release Train Engineer on the MyCity platform recently ended due to budget cuts. Since we both worked on the OTI project for NYC, I wanted to reach out.\n\n"
-            "I am looking for my next role. Does {org_name} have any open contracts or full-time roles in project management, agile delivery, or business analysis that might be a fit? I'd be very grateful for a referral or any advice.\n\n"
+            "I am looking for my next role. Does your organization have any open contracts or full-time roles in project management, agile delivery, or business analysis that might be a fit? I'd be very grateful for a referral or any advice.\n\n"
             "I have letters of recommendation from my former supervisors at OTI. Thanks for your time!\n\n"
             "Best,\n\n"
             "{sender_signature}"
@@ -174,13 +183,48 @@ def get_gmail_creds():
     return creds
 
 
-def create_draft(service, to_email, subject, body):
-    """Creates a draft email in the Gmail drafts folder."""
+def text_to_html(text_body):
+    """Converts plain text to HTML, dynamically hyperlinking LinkedIn and Website fields."""
+    # Escape HTML special characters
+    html_content = html.escape(text_body)
+    
+    # Hyperlink the LinkedIn URL dynamically
+    if SENDER_LINKEDIN and SENDER_LINKEDIN != "[Your LinkedIn]":
+        linkedin_url = SENDER_LINKEDIN if SENDER_LINKEDIN.startswith("http") else f"https://{SENDER_LINKEDIN}"
+        # We search for the escaped plain text and replace it with a clickable link
+        escaped_linkedin = html.escape(SENDER_LINKEDIN)
+        html_content = html_content.replace(
+            escaped_linkedin, 
+            f'<a href="{linkedin_url}">{escaped_linkedin}</a>'
+        )
+        
+    # Hyperlink the Website URL dynamically
+    if SENDER_WEBSITE and SENDER_WEBSITE != "[Your Website]":
+        website_url = SENDER_WEBSITE if SENDER_WEBSITE.startswith("http") else f"https://{SENDER_WEBSITE}"
+        escaped_website = html.escape(SENDER_WEBSITE)
+        html_content = html_content.replace(
+            escaped_website, 
+            f'<a href="{website_url}">{escaped_website}</a>'
+        )
+        
+    # Replace plain text newlines with HTML line breaks
+    html_content = html_content.replace('\n', '<br>')
+    return html_content
+
+
+def create_draft(service, to_email, subject, plain_body):
+    """Creates a draft email (Multipart Plain/HTML) in the Gmail drafts folder."""
     try:
         message = EmailMessage()
-        message.set_content(body)
         message['To'] = to_email
         message['Subject'] = subject
+        
+        # Set the plain text alternative
+        message.set_content(plain_body)
+        
+        # Convert plain text to HTML and add as HTML alternative
+        html_body = text_to_html(plain_body)
+        message.add_alternative(html_body, subtype='html')
         
         # Raw email string needs to be base64url encoded
         raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
