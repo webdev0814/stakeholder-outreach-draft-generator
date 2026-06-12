@@ -221,7 +221,7 @@ def update_contact_status_in_csv(csv_path, email_statuses):
 
 
 def update_contact_status_in_sheets(sheets_service, sheet_id, sheet_name, email_statuses):
-    """Updates status in Google Sheets tab."""
+    """Updates status in Google Sheets tab using a single batchUpdate request to prevent rate-limiting."""
     try:
         range_name = f"'{sheet_name}'!A1:Z500"
         result = sheets_service.spreadsheets().values().get(
@@ -252,7 +252,7 @@ def update_contact_status_in_sheets(sheets_service, sheet_id, sheet_name, email_
         else:
             status_idx = header.index('Delivery Status')
             
-        updates = 0
+        update_data = []
         for i in range(1, len(rows)):
             row = rows[i]
             while len(row) < len(header):
@@ -264,18 +264,110 @@ def update_contact_status_in_sheets(sheets_service, sheet_id, sheet_name, email_
                 row[status_idx] = new_status
                 col_letter = chr(65 + status_idx)
                 cell_range = f"'{sheet_name}'!{col_letter}{i+1}"
-                sheets_service.spreadsheets().values().update(
-                    spreadsheetId=sheet_id,
-                    range=cell_range,
-                    valueInputOption='RAW',
-                    body={'values': [[new_status]]}
-                ).execute()
-                updates += 1
+                update_data.append({
+                    'range': cell_range,
+                    'values': [[new_status]]
+                })
                 
-        return updates
+        if update_data:
+            body = {
+                'valueInputOption': 'RAW',
+                'data': update_data
+            }
+            sheets_service.spreadsheets().values().batchUpdate(
+                spreadsheetId=sheet_id,
+                body=body
+            ).execute()
+            return len(update_data)
+            
+        return 0
     except Exception as e:
         print(f"[-] Error updating Google Sheet tab '{sheet_name}': {e}")
         return 0
+
+
+def sync_csv_to_sheets(sheets_service, sheet_id):
+    """Synchronizes status differences from the CSVs to the Google Sheet tab in a single batchUpdate request per tab."""
+    print("\n--- Synchronizing CSV Statuses to Google Sheets ---")
+    
+    # Load all status from CSVs
+    csv_statuses = {}
+    for csv_path in [CITY_CSV, VENDOR_CSV]:
+        if os.path.exists(csv_path):
+            try:
+                with open(csv_path, mode='r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        email = row.get('Email', '').strip().lower()
+                        status = row.get('Delivery Status', '').strip()
+                        if email and status:
+                            csv_statuses[email] = status
+            except Exception as e:
+                print(f"[-] Error reading {csv_path} during sync: {e}")
+                        
+    for csv_path, sheet_name in [(CITY_CSV, 'City Employees'), (VENDOR_CSV, 'Vendor Employees')]:
+        try:
+            range_name = f"'{sheet_name}'!A1:Z500"
+            result = sheets_service.spreadsheets().values().get(
+                spreadsheetId=sheet_id,
+                range=range_name
+            ).execute()
+            
+            rows = result.get('values', [])
+            if not rows:
+                continue
+                
+            header = rows[0]
+            if 'Email' not in header:
+                continue
+            email_idx = header.index('Email')
+            
+            if 'Delivery Status' not in header:
+                header.append('Delivery Status')
+                status_idx = len(header) - 1
+                sheets_service.spreadsheets().values().update(
+                    spreadsheetId=sheet_id,
+                    range=f"'{sheet_name}'!A1",
+                    valueInputOption='RAW',
+                    body={'values': [header]}
+                ).execute()
+            else:
+                status_idx = header.index('Delivery Status')
+                
+            update_data = []
+            for i in range(1, len(rows)):
+                row = rows[i]
+                while len(row) < len(header):
+                    row.append("")
+                    
+                email = row[email_idx].strip().lower()
+                sheet_status = row[status_idx].strip()
+                csv_status = csv_statuses.get(email, '')
+                
+                # If they don't match, sync from CSV to Sheet
+                if csv_status and sheet_status != csv_status:
+                    row[status_idx] = csv_status
+                    col_letter = chr(65 + status_idx)
+                    cell_range = f"'{sheet_name}'!{col_letter}{i+1}"
+                    update_data.append({
+                        'range': cell_range,
+                        'values': [[csv_status]]
+                    })
+                    
+            if update_data:
+                body = {
+                    'valueInputOption': 'RAW',
+                    'data': update_data
+                }
+                sheets_service.spreadsheets().values().batchUpdate(
+                    spreadsheetId=sheet_id,
+                    body=body
+                ).execute()
+                print(f"[+] Synchronized {len(update_data)} status mismatches to Sheets '{sheet_name}'.")
+            else:
+                print(f"[+] Sheets '{sheet_name}' is already synchronized with local CSV.")
+        except Exception as e:
+            print(f"[-] Error syncing CSV to Sheets tab '{sheet_name}': {e}")
 
 
 def run_verification():
@@ -358,6 +450,9 @@ def run_verification():
         vendor_sheet_updates = update_contact_status_in_sheets(sheets_service, SPREADSHEET_ID, 'Vendor Employees', email_statuses)
         print(f"[+] Flagged {city_sheet_updates} rows in Google Sheets 'City Employees'")
         print(f"[+] Flagged {vendor_sheet_updates} rows in Google Sheets 'Vendor Employees'")
+        
+        # Self-healing synchronization step
+        sync_csv_to_sheets(sheets_service, SPREADSHEET_ID)
     else:
         print("\n[-] Google Sheets update skipped: 'spreadsheet_id' not found in config.json.")
         
@@ -373,4 +468,17 @@ def run_verification():
 
 
 if __name__ == '__main__':
-    run_verification()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1].lower() == '--sync':
+        print("====================================================")
+        print("        MyCity Email Verification Sync              ")
+        print("====================================================")
+        creds = get_creds()
+        if creds and SPREADSHEET_ID:
+            sheets_service = build('sheets', 'v4', credentials=creds)
+            sync_csv_to_sheets(sheets_service, SPREADSHEET_ID)
+        else:
+            print("[-] Sync failed: Missing credentials or spreadsheet_id.")
+    else:
+        run_verification()
+
