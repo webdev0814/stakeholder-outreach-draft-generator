@@ -28,14 +28,14 @@ CONFIG_FILE = 'config.json'
 # Default placeholders (loaded from config.json if available)
 SENDER_NAME = "[Your Name]"
 SENDER_EMAIL = "[Your Email]"
-SENDER_LINKEDIN = "linkedin.com/in/jasonsantpmp"
-SENDER_WEBSITE = "https://jasonsant.dev"
+SENDER_LINKEDIN = "linkedin.com/in/yourprofile"
+SENDER_WEBSITE = "https://yourwebsite.com"
 SENDER_SIGNATURE = (
     "[Your Name] - Public Sector Specialist\n"
     "PMP | CSM | CBAP | SAFe\n\n"
     "Project Leadership \u2022 Data-Driven Strategy \u2022 Process Improvement\n\n"
-    "Linkedin: linkedin.com/in/jasonsantpmp\n"
-    "Website:  https://jasonsant.dev"
+    "Linkedin: linkedin.com/in/yourprofile\n"
+    "Website:  https://yourwebsite.com"
 )
 
 # Load config if exists

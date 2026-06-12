@@ -7,7 +7,7 @@ This document contains personalized email templates for the job search outreach.
 ## 🏛️ NYC City Employee Templates
 
 ### 1. ACS (Administration for Children's Services)
-*Use this for ACS employees (e.g., Elizabeth Wolkomir, Deputy Commissioner, or Zachary Gisterak, ACS Project Manager).*
+*Use this for ACS employees.*
 * **Subject**: Reconnecting / MyCity Child Care contract opportunities
 * **Body**:
   ```text
@@ -47,7 +47,7 @@ This document contains personalized email templates for the job search outreach.
   ```
 
 ### 3. City Hall
-*Use this for City Hall employees (e.g., Aaron Yarborough, Masha Gindler).*
+*Use this for City Hall employees.*
 * **Subject**: MyCity Platform – Next Contract Opportunities
 * **Body**:
   ```text
